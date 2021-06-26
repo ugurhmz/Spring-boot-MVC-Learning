@@ -8,6 +8,9 @@
 </head>
 <body>
 
-	<h1 style="font-size:1.5rem;color:orange;">Hello world. First page....</h1>
+	<h1>
+		Message pages ${message} 
+	</h1>
+
 </body>
 </html>
