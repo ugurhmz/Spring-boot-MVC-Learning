@@ -1,9 +1,6 @@
 package com.ugurhmz.springbasics.post;
 
 
-
-
-
 public class Employee {
 
 	private long employeeId;

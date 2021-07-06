@@ -2,6 +2,7 @@ package com.ugurhmz.springbasics.post;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -23,11 +24,13 @@ public class EditingController {
 	
 	
 	@PostMapping("/editing/employee")
-	public String postEmployee(Model model, Employee employee) {
-		System.out.println("Employee infos : "
-				+employee.getEmployeeId()+" "
-				+employee.getEmployeeName()+" "+
-				employee.getMonthlySalary()+" ");
+	public String postEmployee(Model model, Employee employee, BindingResult result) {
+		if(!result.hasErrors()) {
+			System.out.println("Employee infos : "
+					+employee.getEmployeeId()+" "
+					+employee.getEmployeeName()+" "+
+					employee.getMonthlySalary()+" ");
+		}
 		
 		model.addAttribute("employee",employee);
 		return "editing/employeePage";
