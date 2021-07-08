@@ -18,6 +18,10 @@ public class SupplierController {
 	@Autowired
 	private SupplierRepository supplierRepository;
 	
+	//@Autowired
+	//private SpecialRepository specialRepository;
+	
+	
 	
 	@GetMapping("/supplier/generate")
 	@ResponseBody
@@ -27,10 +31,11 @@ public class SupplierController {
 			Supplier supplier = new Supplier(0,"Satıcı "+(i+1),200+50*i);
 			supplierRepository.save(supplier);
 		}
-		
-		
+			
 		return "100 Satıcı eklendi...";
 	}
+	
+	
 	
 	@GetMapping("/supplier/getall")
 	@ResponseBody
@@ -46,10 +51,10 @@ public class SupplierController {
 			count++;
 			
 		}
-		
 	
 		return "Bulunan Toplam Satıcı Sayısı : "+count+" Toplam Borç : "+sumDebit;
 	}
+	
 	
 	
 	@GetMapping("/supplier/findbyname/{name}")
@@ -70,6 +75,25 @@ public class SupplierController {
 	}
 	
 	
+	@GetMapping("/supplier/findbymindebit/{debit}")
+	@ResponseBody
+	public String findSuppliersByTotalDebitMin(
+			@PathVariable(name="debit") double totalDebitMin) 
+	{
+		
+		//Iterable<Supplier> suppliers = specialRepository.findSupplierTotalDebitMin(totalDebitMin);
+		Iterable<Supplier> suppliers = supplierRepository.findSupplierTotalDebitMin(totalDebitMin);
+		
+		int count=0;
+		double sumDebit=0;
+		
+		for(Supplier supplier : suppliers) {
+			sumDebit += supplier.getTotalDebit();
+			count++;		
+		}
+		
+		return "Bulunan Toplam Satıcı Sayısı : "+count+" Toplam Borç : "+sumDebit;
+	}		
 }
 
 

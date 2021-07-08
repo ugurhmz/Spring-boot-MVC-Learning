@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 
 
-public interface SupplierRepository extends CrudRepository<Supplier, Long>{
+public interface SupplierRepository extends CrudRepository<Supplier, Long>, SpecialRepository{
 
 	@Query("select s from Supplier s where  s.supplierName = :supplierName")
 	List<Supplier> findSuppliersByName(@Param("supplierName")  String supplierName);
