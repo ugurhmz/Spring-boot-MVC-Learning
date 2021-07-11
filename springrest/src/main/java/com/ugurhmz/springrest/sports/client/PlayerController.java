@@ -88,6 +88,49 @@ public class PlayerController {
 		
 	}
 	
+	
+	@GetMapping("/client/change")
+	@ResponseBody
+	public String changePlayer(
+			@RequestParam(name="name") String playerName,
+			@RequestParam(name="score") double averageScore)
+	{
+		Player player = new Player(0, playerName, averageScore);
+		String url="http://localhost:8080/sports/player";
+		
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Boolean> response =  restTemplate.exchange(
+				url, HttpMethod.PUT, new HttpEntity<Player>(player), Boolean.class);
+		
+		boolean updated = response.getBody();
+				
+		return "updated : "+updated;		
+	}
+	
+	
+	
+	@GetMapping("/client/delete/{id}")
+	@ResponseBody
+	public String deletePlayer(
+			@PathVariable(name="id") long playerId)
+	{
+		System.out.println("playerId : "+playerId);
+		String url="http://localhost:8080/sports/player/"+playerId;
+		
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.exchange(
+				url, HttpMethod.DELETE, HttpEntity.EMPTY, Void.class);
+		
+		return "silindi...";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 
