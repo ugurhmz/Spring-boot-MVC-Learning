@@ -2,6 +2,8 @@ package com.ugurhmz.springrest.sports.client;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -62,6 +65,29 @@ public class PlayerController {
 	
 		return "playerList : "+playerList.size();
 	}
+	
+	@GetMapping("/client/send")
+	@ResponseBody
+	public String sendPlayer
+	(
+			@RequestParam(name="name") String playerName,
+			@RequestParam(name="score")  double averageScore) 
+	{
+		Player player = new Player(0,playerName,averageScore);
+		String url = "http://localhost:8080/sports/playerpost";
+		RestTemplate restTemplate = new RestTemplate();
+		
+		
+		//Player result = restTemplate.postForObject(url, player, Player.class);
+
+		ResponseEntity<Player> response =  restTemplate.exchange(
+				url, HttpMethod.POST, new HttpEntity<Player>(player), Player.class);
+		
+		Player result = response.getBody();	
+		return "Yollandı : "+result.getPlayerId() + " "+result.getPlayerName();
+		
+	}
+	
 }
 
 
