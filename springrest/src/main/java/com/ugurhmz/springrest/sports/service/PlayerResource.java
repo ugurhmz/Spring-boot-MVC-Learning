@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ugurhmz.springrest.sports.data.Player;
+
 
 @RestController
 public class PlayerResource {

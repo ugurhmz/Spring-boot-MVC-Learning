@@ -1,4 +1,4 @@
-package com.ugurhmz.springrest.sports.service;
+package com.ugurhmz.springrest.sports.data;
 
 
 
