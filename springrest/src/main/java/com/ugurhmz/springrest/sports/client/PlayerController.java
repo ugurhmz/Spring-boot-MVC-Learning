@@ -1,5 +1,11 @@
 package com.ugurhmz.springrest.sports.client;
 
+import java.util.List;
+
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +31,47 @@ public class PlayerController {
 		//System.out.println(json);
 		
 		
-		Player player = restTemplate.getForObject(url, Player.class);		
+		//Player player = restTemplate.getForObject(url, Player.class);	
+		
+		ResponseEntity<Player> response =  restTemplate.exchange(
+				url, HttpMethod.GET, HttpEntity.EMPTY, Player.class);
+		
+		Player player= response.getBody();
 		return "Player Alındı : "+player.getPlayerName()+" "+player.getAverageScore();
+			
+	}
+	
+	@GetMapping("/clients/players")
+	@ResponseBody
+	public String getPlayers() {
+		String url = "http://localhost:8080/sports/players";
+		RestTemplate restTemplate = new RestTemplate();		
+		ResponseEntity<List<Player>> response =  restTemplate.exchange(
+				url, HttpMethod.GET, HttpEntity.EMPTY,
+				new ParameterizedTypeReference<List<Player>>() {
+				});
 		
+		List<Player> playerList = response.getBody(); 	
 		
+		for(Player player : playerList ) {
+				System.out.println(player.getPlayerId()+" "+
+		player.getPlayerName()+" "+
+		player.getAverageScore());
+		}
+		
+	
+		return "playerList : "+playerList.size();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
