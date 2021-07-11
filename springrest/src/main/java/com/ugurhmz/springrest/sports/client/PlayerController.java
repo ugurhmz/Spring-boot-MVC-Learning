@@ -125,7 +125,28 @@ public class PlayerController {
 	}
 	
 	
-	
+	@GetMapping("/client/xplayers")
+	@ResponseBody
+	public String getPlayersXml() {
+		String url="http://localhost:8080/sports/xplayers";
+		RestTemplate restTemplate = new RestTemplate();
+		
+		ResponseEntity<List<Player>> response =  restTemplate.exchange(
+				url, HttpMethod.GET, HttpEntity.EMPTY,
+				new ParameterizedTypeReference<List<Player>>() {
+				});
+		
+		List<Player> playerList = response.getBody(); 	
+		
+		for(Player player : playerList) {
+			System.out.println(player.getPlayerId()+" "+
+						player.getPlayerName()+" "+
+						player.getAverageScore());
+		}
+		
+		return "xml olarak alınmıştır : "+playerList.size();
+		
+	}
 	
 	
 	

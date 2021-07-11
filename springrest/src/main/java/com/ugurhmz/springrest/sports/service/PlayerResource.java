@@ -45,6 +45,21 @@ public class PlayerResource {
 		return playerList;
 	}
 	
+	//XML 
+	@GetMapping(value="/sports/xplayers", produces = MediaType.APPLICATION_XML_VALUE)
+	public List<Player> getPlayersXMl(){
+		List<Player> players = new ArrayList<>();
+		
+		players.add(new Player(0,"Samet Engin",15.34));
+		players.add(new Player(0,"Samet Engin",12.46));
+		players.add(new Player(0,"Samet Engin",17.67));
+		
+		return players;
+	}
+	
+	
+	
+	
 	
 	@PostMapping("/sports/playerpost")
 	public Player postPlayer(@RequestBody Player player) {
