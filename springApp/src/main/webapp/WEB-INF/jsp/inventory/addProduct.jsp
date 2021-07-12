@@ -8,6 +8,7 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
 
@@ -17,28 +18,36 @@
 	
 		<fieldset class="form-group">
 			<form:label path="productId">Product ID</form:label>
-			<form:input path="productId" type="text" disabled="true" />	
+			<form:input class="form-control"  path="productId" type="text" disabled="true" />	
 		</fieldset>
 		
 		<fieldset style="margin:1rem 0;" class="form-group">
 			<form:label path="productName">Product Name</form:label>
-			<form:input path="productName" type="text" />	
+			<form:input class="form-control w-50" path="productName" type="text" />	
 			<form:errors path="productName" />
 			
 		</fieldset>
 		
 		<fieldset class="form-group">
 			<form:label path="salesPrice">SalesPrice : </form:label>
-			<form:input path="salesPrice" type="text"/>	
+			<form:input class="form-control w-25" path="salesPrice" type="text"/>	
 			<form:errors path="salesPrice" />
 			
 		</fieldset>	
 		
-		<button type="submit" style="margin-top:1rem;padding:.8rem;" > 
-			Gönder
+		<button type="submit"  class="btn btn-success ml-2" > 
+			Save Product
 		</button>	
 	</form:form>
 
+	<p>
+		<a href="/product/productList" 
+			 class="btn btn-primary mt-2 ml-2">
+			Product List
+		</a>
+	</p>
+	
+	
 
 
 </body>
