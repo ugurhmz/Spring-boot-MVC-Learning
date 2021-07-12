@@ -32,7 +32,7 @@ public class ProductController {
 		
 	}
 	
-	
+	// CREATE 
 	@PostMapping("/product/addproduct")
 	public String postAddProduct(Model model, Product product, BindingResult result) {
 		productRepository.save(product);

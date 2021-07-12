@@ -13,5 +13,12 @@
 	Product Name : ${product.productName } <br />
 	Product SalesPrice : ${product.salesPrice } <br />
 
+	<p>
+		<a href="/product/addproduct" 
+			style="background-color: blue;padding:5px; color:white;border-radius:5px;font-weight: bolder">
+			Back To Page
+		</a>
+	</p>
+
 </body>
 </html>
