@@ -1,5 +1,6 @@
 package com.ugurhmz.springapp.presentation.mvc;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,9 @@ import com.ugurhmz.springapp.data.entity.Product;
 import com.ugurhmz.springapp.data.repository.ProductRepository;
 
 
-
-
-
 @Controller
 public class ProductController {
 
-	
-	@Autowired
-	private ProductRepository productRepository;
-	
 	
 	@Autowired
 	private ProductService productService;
@@ -54,10 +48,12 @@ public class ProductController {
 			return "/inventory/addProduct";
 		}	
 		
+		
+		
 		model.addAttribute("message","The Product has been successfully added");
+		model.addAttribute("product",product);
 		return "/inventory/successProduct";
 	}
-	
 	
 	
 	
@@ -65,24 +61,25 @@ public class ProductController {
 	@GetMapping("/product/productList")
 	public String getProductList(Model model) {
 		
+		List<ProductDTO> products = productService.findAll();
+		
 		model.addAttribute("message","PRODUCT LIST");
-		model.addAttribute("productlist",productRepository.findAll());
+		model.addAttribute("productlist",products);
 		return "inventory/productList";
 	}
-	
 	
 	
 	
 	//DELETE
 	@GetMapping("/product/delete/{id}")
 	public String deleteProductWithId(@PathVariable("id") Long productId, Model model) {
-		productRepository.deleteById(productId);
+		productService.delete(productId);
 		
 		model.addAttribute("message","Product Deleted id : "+productId);
-		model.addAttribute("productlist",productRepository.findAll()); //Silindikten sonra listenin tekrar gözükmesi için .findAll() kullan çünkü productlist gidiyor .jsp'ye
+		List<ProductDTO> products = productService.findAll();
+		model.addAttribute("productlist",products); //Silindikten sonra listenin tekrar gözükmesi için .findAll() kullan çünkü productlist gidiyor .jsp'ye
 		return "/inventory/productList";
 	}
-	
 	
 	
 	// UPDATE
@@ -94,16 +91,6 @@ public class ProductController {
 		return "/inventory/addProduct";
 		
 	}
-	
-
-	
-
-
 		
-	
-	
-	
-	
-	
 	
 }

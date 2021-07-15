@@ -36,18 +36,21 @@ public class ProductServiceImpl implements ProductService {
 	
 	// FIND BY ID İŞ MANTIĞINI VERİ TABANINDAN KOPARTIYOR 
 	@Override
-	public ProductDTO find(long productId) {
-		ProductDTO productDto = new ProductDTO();
-		Optional<Product> optional = productRepository.findById(productId);
+	public ProductDTO find(Long productId) {
+		ProductDTO productDto = null;
 		
-		if(optional.isPresent()) {
+		if(productId != null) {
+			Optional<Product> optional = productRepository.findById(productId);
 			
-			Product product = optional.get();
-			convertToDto(product, productDto);
-			
-			
-		} else {
-			productDto = new ProductDTO(0,"",0.0);	
+			if(optional.isPresent()) {
+				productDto = new ProductDTO();
+				Product product = optional.get();
+				convertToDto(product,productDto );				
+			} 
+		} 
+		
+		if(productId == null) {
+			productDto = new ProductDTO(0,"",0.0);
 		}
 		
 		return productDto;	
@@ -87,6 +90,18 @@ public class ProductServiceImpl implements ProductService {
 			product.setProductName(productDto.getProductName());
 			product.setSalesPrice(productDto.getSalesPrice());
 	}
+
+
+
+	@Override
+	public void delete(long productId) {
+		productRepository.deleteById(productId);
+		
+		
+	}
+
+
+
 	
 
 }
