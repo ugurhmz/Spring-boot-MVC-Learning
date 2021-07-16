@@ -16,6 +16,7 @@
 	<form:form method="POST" modelAttribute="product">
 		<form:errors/>
 	
+		<form:hidden path="productId" />
 		<fieldset class="form-group">
 			<form:label path="productId">Product ID</form:label>
 			<form:input class="form-control"  path="productId" type="text" disabled="true" />	

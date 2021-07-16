@@ -31,10 +31,8 @@ public class ProductController {
 	public String getProduct(Model model) {
 		ProductDTO product = new ProductDTO(0,"",0.0);
 		
-		
 		model.addAttribute("product",product);
-		return "/inventory/addProduct";
-		
+		return "/inventory/addProduct";	
 		
 	}
 	
@@ -49,14 +47,12 @@ public class ProductController {
 			result.addError(new ObjectError("product","The product could not be added"));
 			return "/inventory/addProduct";
 		}	
-		
-		
+			
 		
 		model.addAttribute("message","The Product has been successfully added");
 		model.addAttribute("product",product);
 		return "/inventory/successProduct";
 	}
-	
 	
 	
 	// READ PRODUCT LIST
@@ -69,7 +65,6 @@ public class ProductController {
 		model.addAttribute("productlist",products);
 		return "inventory/productList";
 	}
-	
 	
 	
 	//DELETE
@@ -94,5 +89,4 @@ public class ProductController {
 		
 	}
 		
-	
 }

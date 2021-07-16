@@ -53,7 +53,7 @@ public class ProductClientImpl implements ProductClient {
 	
 	//PUT
 	@Override
-	public void putProduct(ProductDTO productDto) {
+	public void putProduct(ProductDTO productDto ) {
 		String url = BASE_URL;
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.exchange(
