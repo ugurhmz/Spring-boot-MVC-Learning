@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ugurhmz.springcomplex.business.dto.EmployeeDetail;
-import com.ugurhmz.springcomplex.business.dto.EmployeeSummary;
+import com.ugurhmz.springcomplex.business.dto.EmployeeDetailDto;
+import com.ugurhmz.springcomplex.business.dto.EmployeeSummaryDto;
 import com.ugurhmz.springcomplex.business.service.EmployeeService;
 import com.ugurhmz.springcomplex.data.entity.Department;
 import com.ugurhmz.springcomplex.data.entity.Employee;
@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	
 	// SAVE 
 	@Override
-	public void create(EmployeeDetail employeeDetail) {
+	public void create(EmployeeDetailDto employeeDetail) {
 		Employee employee = convertToEntity(employeeDetail);
 		employeeRepository.save(employee);
 		employee.setEmployeeId(employee.getEmployeeId());
@@ -40,29 +40,34 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	
 	// UPDATE
 	@Override
-	public void update(EmployeeDetail employeeDetail) {
+	public void update(EmployeeDetailDto employeeDetail) {
 		
-		
+		Employee employee = convertToEntity(employeeDetail);
+		employeeRepository.save(employee);
 	}
 
 	// DELETE
 	@Override
 	public void delete(long employeeId) {
-		
+		employeeRepository.deleteById(employeeId);
 		
 	}
 
 	// FIND BY ID
 	@Override
-	public EmployeeDetail findById(long employeeId) {
-		
-		return null;
+	public EmployeeDetailDto findById(long employeeId) {
+		Optional<Employee> employee = employeeRepository.findById(employeeId);
+		if(employee.isPresent()) {
+			EmployeeDetailDto employeeDetail = convertToDto(employee.get());
+			return employeeDetail;
+		}	
+		return null;	
 	}
 	
 
 	//LIST DETAIL
 	@Override
-	public EmployeeSummary listDetail() {
+	public EmployeeSummaryDto listDetail() {
 		
 		return null;
 	}
@@ -70,7 +75,7 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	
 	//LIST BY DEPARTMENT
 	@Override
-	public EmployeeSummary listByDepartment(long departmentId) {
+	public EmployeeSummaryDto listByDepartment(long departmentId) {
 		
 		return null;
 	}
@@ -84,7 +89,7 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	
 	
 	// convert to Entity 
-	public Employee convertToEntity(EmployeeDetail employeeDetail) {
+	private Employee convertToEntity(EmployeeDetailDto employeeDetail) {
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeDetail.getEmployeeId());
 		employee.setEmployeeName(employeeDetail.getEmployeeName());
@@ -99,6 +104,27 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		
 		return employee;
 	}
+	
+	
+	// conver to Dto
+	private EmployeeDetailDto convertToDto(Employee employee) {
+		EmployeeDetailDto employeeDetail = new EmployeeDetailDto();
+		employeeDetail.setEmployeeId(employee.getEmployeeId());
+		employeeDetail.setEmployeeName(employee.getEmployeeName());
+		employeeDetail.setMonthlySalary(employee.getMonthlySalary());
+		
+		
+		if(employee.getDepartment() != null) {
+			employeeDetail.setDepartmentId(employee.getEmployeeId());
+			employeeDetail.setDepartmentName(employee.getDepartment().getDepartmentName());
+		
+		}
+		
+		
+		return employeeDetail;
+	}
+	
+	
 
 }
 

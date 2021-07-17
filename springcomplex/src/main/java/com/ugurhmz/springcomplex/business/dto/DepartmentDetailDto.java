@@ -4,7 +4,7 @@ package com.ugurhmz.springcomplex.business.dto;
 
 
 
-public class DepartmentDetail {
+public class DepartmentDetailDto {
 
 	private long departmentId;
 	private String departmentName;

@@ -2,13 +2,13 @@ package com.ugurhmz.springcomplex.business.dto;
 
 import java.util.List;
 
-public class EmployeeSummary {
+public class EmployeeSummaryDto {
 
 	private int employeeCount;
 	private long departmentId;
 	private String 	departmentName;
  
-	private List<EmployeeDetail> employeeDetailList;
+	private List<EmployeeDetailDto> employeeDetailList;
 
 	
 	
@@ -21,11 +21,11 @@ public class EmployeeSummary {
 		this.employeeCount = employeeCount;
 	}
 
-	public List<EmployeeDetail> getEmployeeDetailList() {
+	public List<EmployeeDetailDto> getEmployeeDetailList() {
 		return employeeDetailList;
 	}
 
-	public void setEmployeeDetailList(List<EmployeeDetail> employeeDetailList) {
+	public void setEmployeeDetailList(List<EmployeeDetailDto> employeeDetailList) {
 		this.employeeDetailList = employeeDetailList;
 	}
 

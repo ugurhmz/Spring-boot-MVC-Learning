@@ -3,7 +3,7 @@ package com.ugurhmz.springcomplex.business.dto;
 
 
 
-public  class EmployeeDetail {
+public  class EmployeeDetailDto {
 
 	private long employeeId;
 	private String employeeName;
