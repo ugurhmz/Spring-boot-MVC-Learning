@@ -5,7 +5,9 @@ import java.util.List;
 public class EmployeeSummary {
 
 	private int employeeCount;
+	private long departmentId;
 	private String 	departmentName;
+ 
 	private List<EmployeeDetail> employeeDetailList;
 
 	
@@ -33,6 +35,14 @@ public class EmployeeSummary {
 
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
+	}
+
+	public long getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(long departmentId) {
+		this.departmentId = departmentId;
 	}
 	
 	
