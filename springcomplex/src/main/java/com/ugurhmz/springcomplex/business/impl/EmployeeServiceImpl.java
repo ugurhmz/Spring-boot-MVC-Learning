@@ -1,6 +1,7 @@
 package com.ugurhmz.springcomplex.business.impl;
 
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	private DepartmentRepository departmentRepository;
 	
 	
+	
+	
+	
 	// SAVE 
 	@Override
 	public void create(EmployeeDetailDto employeeDetail) {
@@ -38,6 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		
 	}
 	
+	
+	
+	
 	// UPDATE
 	@Override
 	public void update(EmployeeDetailDto employeeDetail) {
@@ -45,6 +52,9 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		Employee employee = convertToEntity(employeeDetail);
 		employeeRepository.save(employee);
 	}
+	
+	
+	
 
 	// DELETE
 	@Override
@@ -53,6 +63,10 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		
 	}
 
+	
+	
+	
+	
 	// FIND BY ID
 	@Override
 	public EmployeeDetailDto findById(long employeeId) {
@@ -64,28 +78,64 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		return null;	
 	}
 	
+	
+	
+	
+	
 
 	//LIST DETAIL
 	@Override
 	public EmployeeSummaryDto listDetail() {
+		EmployeeSummaryDto employeeSummaryDto = new EmployeeSummaryDto();
+		employeeSummaryDto.setEmployeeDetailList(new ArrayList<>());
 		
-		return null;
+		for(Employee emp : employeeRepository.findAll() ) {
+			EmployeeDetailDto employeeDetailDto = convertToDto(emp);
+			employeeSummaryDto.getEmployeeDetailList().add(employeeDetailDto);
+		}
+		
+		return employeeSummaryDto;
 	}
 
+	
+	
+	
 	
 	//LIST BY DEPARTMENT
 	@Override
 	public EmployeeSummaryDto listByDepartment(long departmentId) {
+		EmployeeSummaryDto employeeSummaryDto = new EmployeeSummaryDto();
 		
-		return null;
+		Optional<Department> department = departmentRepository.findById(departmentId);
+		
+		if(department.isPresent()) {
+			employeeSummaryDto.setDepartmentId(department.get().getDepartmentId());
+			employeeSummaryDto.setDepartmentName(department.get().getDepartmentName());
+		}
+		
+		
+		for(Employee emp : employeeRepository.findByDepartment(departmentId)) {
+			EmployeeDetailDto employeeDetailDto = convertToDto(emp);
+			employeeSummaryDto.getEmployeeDetailList().add(employeeDetailDto);
+			
+		}
+		
+		return employeeSummaryDto;		
 	}
 
+	
+	
+	
+	
 	//COUNT BY DEPARTMENT
 	@Override
 	public int countByDepartment(long departmentId) {
-		
-		return 0;
+		return employeeRepository.countByDepartment(departmentId);
 	}
+	
+	
+	
+	
 	
 	
 	// convert to Entity 
