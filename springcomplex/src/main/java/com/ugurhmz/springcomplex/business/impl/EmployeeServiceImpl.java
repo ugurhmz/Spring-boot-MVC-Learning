@@ -83,7 +83,7 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	
 	
 
-	//LIST DETAIL
+	//FIND ALL
 	@Override
 	public EmployeeSummaryDto listDetail() {
 		EmployeeSummaryDto employeeSummaryDto = new EmployeeSummaryDto();
