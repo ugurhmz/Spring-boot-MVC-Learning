@@ -15,10 +15,11 @@ public class Employee {
 	private String employeeName;
 	private double monthlySalary;
 	
-	// N employee -> One department
+	
 	@ManyToOne
-	@JoinColumn(name="departmentId")
+	@JoinColumn(name="department_id")
 	private Department department;
+	
 	
 	
 	public long getEmployeeId() {

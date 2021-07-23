@@ -18,10 +18,9 @@ public class Department {
 	private String departmentName;
 	
 	
-	// One department -> N Employee
-	@OneToMany( mappedBy = "department",cascade = CascadeType.ALL)
-	private List<Employee> empList;
 	
+	@OneToMany( mappedBy = "department")
+	private List<Employee> empList;
 	
 	
 	

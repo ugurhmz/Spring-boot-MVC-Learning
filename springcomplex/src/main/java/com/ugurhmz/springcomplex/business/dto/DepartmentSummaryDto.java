@@ -2,12 +2,16 @@ package com.ugurhmz.springcomplex.business.dto;
 
 import java.util.List;
 
+
+
 public class DepartmentSummaryDto {
 
 	
 	private List<DepartmentDetailDto> departmentDetailList;
 
 	
+	
+	// GETTER & SETTER
 	public List<DepartmentDetailDto> getDepartmentDetailList() {
 		return departmentDetailList;
 	}

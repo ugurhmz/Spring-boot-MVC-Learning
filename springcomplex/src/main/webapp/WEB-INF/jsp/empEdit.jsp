@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
     
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +34,29 @@
 			<form:errors path="monthlySalary"/>
 		</fieldset>
 		
+		<fieldset class="form-group">
+			<form:label path="departmentId" >Department</form:label>
+			<form:select path="departmentId">	
+											
+				<c:forEach items="${departments.departmentDetailList}" var="department" >
+					
+						<form:option value="${department.departmentId}">
+							${department.departmentName}
+						</form:option>
+				</c:forEach>					
+			</form:select>		
+			
+			
+			<form:errors path="departmentId"/>	
+		</fieldset>	
+			
 		<button type="submit">Save</button>
 		
 	</form:form>
 </body>
 </html>
+
+
+
+
+
