@@ -32,17 +32,15 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	
 	
 	
-	
 	// SAVE 
 	@Override
 	public void create(EmployeeDetailDto employeeDetail) {
 		Employee employee = convertToEntity(employeeDetail);
 		employeeRepository.save(employee);
-		employee.setEmployeeId(employee.getEmployeeId());
+		employeeDetail.setEmployeeId(employee.getEmployeeId());
 		
 	}
-	
-	
+		
 	
 	
 	// UPDATE
@@ -52,7 +50,6 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		Employee employee = convertToEntity(employeeDetail);
 		employeeRepository.save(employee);
 	}
-	
 	
 	
 
@@ -65,21 +62,28 @@ public class EmployeeServiceImpl implements EmployeeService  {
 
 	
 	
-	
-	
 	// FIND BY ID
 	@Override
-	public EmployeeDetailDto findById(long employeeId) {
-		Optional<Employee> employee = employeeRepository.findById(employeeId);
-		if(employee.isPresent()) {
-			EmployeeDetailDto employeeDetail = convertToDto(employee.get());
-			return employeeDetail;
-		}	
-		return null;	
+	public EmployeeDetailDto findById(Long employeeId) {
+		
+		EmployeeDetailDto employeeDetail=null;
+		
+		if(employeeId != null) {
+			Optional<Employee> employee = employeeRepository.findById(employeeId);		
+			if(employee.isPresent()) {
+				 employeeDetail = convertToDto(employee.get());
+				return employeeDetail;
+			}	
+		}
+		
+		if(employeeDetail == null) {
+			employeeDetail = new EmployeeDetailDto();
+			employeeDetail.setEmployeeName("");
+		}
+		
+		return employeeDetail;
+	
 	}
-	
-	
-	
 	
 	
 
@@ -134,9 +138,7 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	}
 	
 	
-	
-	
-	
+
 	
 	// convert to Entity 
 	private Employee convertToEntity(EmployeeDetailDto employeeDetail) {
@@ -173,9 +175,10 @@ public class EmployeeServiceImpl implements EmployeeService  {
 		
 		return employeeDetail;
 	}
-	
-	
 
+
+
+	
 }
 
 

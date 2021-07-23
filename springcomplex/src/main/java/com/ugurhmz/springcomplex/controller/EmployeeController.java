@@ -24,43 +24,47 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	
+	// GET EMPLOYEE
 	@GetMapping(path= {"/employee/edit", "/employee/edit/{id}"})
 	public String getEditEmployee(Model model, @PathVariable(name="id", required=false) Long employeeId) 
 	{
 		EmployeeDetailDto employeeDetailDto = employeeService.findById(employeeId);
 		model.addAttribute("employee",employeeDetailDto);
 		
-		return "/human/empEdit";
+		return "empEdit";
 	}
 	
 	
+	// POST EMPLOYEE
 	@PostMapping(path= {"/employee/edit", "/employee/edit/{id}"})
 	public String postEditEmployee(Model model, EmployeeDetailDto employeeDetailDto, BindingResult result ) {
 		employeeService.create(employeeDetailDto);
 		
 		if(result.hasErrors()) {
 			result.addError(new ObjectError("employeeDetailDto", "Error!!"));
-			return "/human/empEdit";
+			return "empEdit";
 		}
 		
 		
 		model.addAttribute("message","Employee successfully added");
 		model.addAttribute("emp",employeeDetailDto);
 		
-		return "/human/empSuccess";
+		return "empSuccess";
 	}
 	
 	
+	// GET EMPLOYEE LIST
 	@GetMapping("/employee/list")
 	public String getEmployeeList(Model model) {
 		EmployeeSummaryDto employees = employeeService.listDetail();
 		model.addAttribute("message","Employees");
 		model.addAttribute("employees",employees);
 		
-		return "/human/empList";
+		return "empList";
 	}
 	
 	
+	// DELETE EMPLOYEE
 	@GetMapping("/employee/delete/{id}")
 	public String deleteEmployee(Model model, @PathVariable("id") Long employeeId) {
 		employeeService.delete(employeeId);
@@ -69,7 +73,7 @@ public class EmployeeController {
 		EmployeeSummaryDto employees = employeeService.listDetail();
 		model.addAttribute("employees",employees );
 		
-		return "/human/empList";
+		return "empList";
 	}
 	
 	

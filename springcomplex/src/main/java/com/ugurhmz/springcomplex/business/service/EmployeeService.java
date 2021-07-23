@@ -13,7 +13,7 @@ public interface EmployeeService {
 	public void update(EmployeeDetailDto employeeDetail);
 	public void delete(long employeeId);
 	
-	public EmployeeDetailDto findById(long employeeId);
+	public EmployeeDetailDto findById(Long employeeId);
 	public EmployeeSummaryDto listDetail();
 	public EmployeeSummaryDto listByDepartment(long departmentId); 
 	
