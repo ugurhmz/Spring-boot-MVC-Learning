@@ -117,6 +117,8 @@ public class EmployeeServiceImpl implements EmployeeService  {
 			employeeSummaryDto.setDepartmentName(department.get().getDepartmentName());
 		}
 		
+		employeeSummaryDto.setEmployeeDetailList(new ArrayList<>());
+		
 		
 		for(Employee emp : employeeRepository.findByDepartment(departmentId)) {
 			EmployeeDetailDto employeeDetailDto = convertToDto(emp);

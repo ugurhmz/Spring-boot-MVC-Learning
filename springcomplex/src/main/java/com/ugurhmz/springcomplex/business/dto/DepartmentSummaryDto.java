@@ -11,6 +11,8 @@ public class DepartmentSummaryDto {
 
 	
 	
+	
+	
 	// GETTER & SETTER
 	public List<DepartmentDetailDto> getDepartmentDetailList() {
 		return departmentDetailList;

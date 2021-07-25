@@ -37,11 +37,10 @@ public class EmployeeController {
 	@GetMapping(path= {"/employee/edit", "/employee/edit/{id}"})
 	public String getEditEmployee(Model model, @PathVariable(name="id", required=false) Long employeeId) 
 	{
-		EmployeeDetailDto employeeDetailDto = employeeService.findById(employeeId);
-		DepartmentSummaryDto departments = departmentService.list();
-		
-		
+		EmployeeDetailDto employeeDetailDto = employeeService.findById(employeeId);				
 		model.addAttribute("employee",employeeDetailDto);
+		
+		DepartmentSummaryDto departments = departmentService.list();
 		model.addAttribute("departments",departments);
 		
 		return "empEdit";
@@ -79,8 +78,38 @@ public class EmployeeController {
 	@GetMapping("/employee/list")
 	public String getEmployeeList(Model model) {
 		EmployeeSummaryDto employees = employeeService.listDetail();
+		DepartmentSummaryDto departments = departmentService.list();
+		model.addAttribute("departments",departments);
 		model.addAttribute("message","Employees");
 		model.addAttribute("employees",employees);
+		
+		return "empList";
+	}
+	
+	
+	// POST EMPLOYEE LIST
+	@PostMapping("/employee/list")
+	public String postEmployeeList(Model model, EmployeeSummaryDto employees, BindingResult result) {
+		System.out.println("EMP ID : "+employees.getDepartmentId());
+		
+
+		
+		
+		if(employees.getDepartmentId() == 0) {
+			employees = employeeService.listDetail();
+			
+		} 
+		else {
+			employees = employeeService.listByDepartment(employees.getDepartmentId());
+		}
+	
+		
+		System.out.println(employees.getDepartmentName());
+		
+		DepartmentSummaryDto departments = departmentService.list();
+		model.addAttribute("departments",departments);
+		model.addAttribute("employees",employees);
+		
 		
 		return "empList";
 	}

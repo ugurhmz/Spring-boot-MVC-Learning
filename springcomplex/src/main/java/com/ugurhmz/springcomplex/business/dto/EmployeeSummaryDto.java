@@ -12,7 +12,7 @@ public class EmployeeSummaryDto {
 
 	
 	
-	
+	// GETTER & SETTER
 	public int getEmployeeCount() {
 		return employeeCount;
 	}
