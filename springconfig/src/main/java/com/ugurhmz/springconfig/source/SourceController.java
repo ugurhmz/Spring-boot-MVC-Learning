@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ugurhmz.springconfig.basics.bean.MyAgent;
 import com.ugurhmz.springconfig.basics.bean.MyBean;
+import com.ugurhmz.springconfig.basics.bean.MySpec;
 
 
 
@@ -23,6 +24,12 @@ public class SourceController {
 	
 	@Autowired
 	private MyAgent myAgent;
+	
+	
+	@Autowired
+	private MySpec mySpec;
+	
+	
 	
 	@GetMapping("/source/bean")
 	@ResponseBody
@@ -43,6 +50,14 @@ public class SourceController {
 	public String getReference() {
 		return "MyAgent : "+myAgent.getAgentName()+" "+myAgent.getMyBean().toString();
 	}
+	
+	
+	@GetMapping("/source/inversion")
+	@ResponseBody
+	public String getInversion() {
+		return "Inversion : "+mySpec.myMethod("Input");
+	}
+	
 	
 	
 }

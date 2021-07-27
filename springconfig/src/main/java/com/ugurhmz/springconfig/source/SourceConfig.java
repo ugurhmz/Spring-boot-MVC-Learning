@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Scope;
 
 import com.ugurhmz.springconfig.basics.bean.MyAgent;
 import com.ugurhmz.springconfig.basics.bean.MyBean;
+import com.ugurhmz.springconfig.basics.bean.MySpec;
+import com.ugurhmz.springconfig.basics.bean.MySpecImpl;
 
 
 
@@ -35,4 +37,20 @@ public class SourceConfig {
 	}
 	
 	
+	@Bean
+	public MySpec mySpec( ) {
+		MySpec mySpec = new MySpecImpl();
+		return mySpec;
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
