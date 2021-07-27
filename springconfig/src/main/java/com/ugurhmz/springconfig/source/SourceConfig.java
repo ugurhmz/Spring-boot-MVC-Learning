@@ -43,7 +43,13 @@ public class SourceConfig {
 		return mySpec;
 	}
 	
-	
+	/*
+	@Bean
+	public CommerceProperties commerceProperties() {
+		CommerceProperties commerceProperties = new CommerceProperties();
+		return commerceProperties;
+	}
+	*/
 	
 }
 

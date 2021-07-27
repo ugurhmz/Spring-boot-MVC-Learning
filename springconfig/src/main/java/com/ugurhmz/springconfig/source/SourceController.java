@@ -30,6 +30,11 @@ public class SourceController {
 	private MySpec mySpec;
 	
 	
+	@Autowired
+	private CommerceProperties commerceProperties;
+	
+	
+	
 	
 	@GetMapping("/source/bean")
 	@ResponseBody
@@ -56,6 +61,17 @@ public class SourceController {
 	@ResponseBody
 	public String getInversion() {
 		return "Inversion : "+mySpec.myMethod("Input");
+	}
+	
+	
+	@GetMapping("/source/properties")
+	@ResponseBody
+	public String getCommerceProperties() {
+		return "properties : "+commerceProperties.getSite()+
+				" "+commerceProperties.getEmailAddress()+" "+
+				"Bank "+commerceProperties.getBank().getName()+
+				" Payment Time : "+commerceProperties.getBank().getPaymentTime();
+				
 	}
 	
 	
