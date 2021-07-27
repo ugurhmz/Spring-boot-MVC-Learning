@@ -17,6 +17,10 @@ public class SourceController {
 	private MyBean myBean;
 	
 	
+	@Autowired
+	private MyBean anotherBean;
+	
+	
 	@GetMapping("/source/bean")
 	@ResponseBody
 	public String getBean() {
@@ -24,5 +28,23 @@ public class SourceController {
 	}
 	
 	
+	@GetMapping("/source/scope")
+	@ResponseBody
+	public String getScope() {
+		return "Bean : "+anotherBean.hashCode()+" "+myBean.hashCode();
+	}
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+

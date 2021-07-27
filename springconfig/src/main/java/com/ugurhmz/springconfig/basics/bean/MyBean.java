@@ -32,6 +32,14 @@ public class MyBean {
 	}
 	
 	
+	public void initializeBean()  {
+		System.out.println("initialize...");
+	}
+	
+	public void finalizeBean() {
+		System.out.println("Finalize...");
+	}
+	
 	
 	@Override
 	public String toString() {
