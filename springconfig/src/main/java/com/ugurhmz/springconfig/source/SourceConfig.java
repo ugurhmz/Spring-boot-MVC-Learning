@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import com.ugurhmz.springconfig.basics.bean.MyAgent;
 import com.ugurhmz.springconfig.basics.bean.MyBean;
 
 
@@ -24,6 +25,14 @@ public class SourceConfig {
 		return myBean;
 	}
 	
+	
+	@Bean
+	public MyAgent myAgent() {
+		MyAgent myAgent = new MyAgent();
+		myAgent.setAgentName("My Agent");
+		myAgent.setMyBean( myBean() );
+		return myAgent;
+	}
 	
 	
 }
