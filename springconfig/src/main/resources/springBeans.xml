@@ -15,5 +15,14 @@
 		<property name="myDouble" value="35.5" />
 		
 	</bean>
+	
+	
+	
+	<bean id="myAgent" class="com.ugurhmz.springconfig.basics.bean.MyAgent">
+		<property name="agentName" value="myAgent xml" />
+		<property name="myBean" ref="myBean"/>
+	</bean>
+  
+  	<bean id="mySpec" class="com.ugurhmz.springconfig.basics.bean.MySpecImpl" />
   
 </beans>
