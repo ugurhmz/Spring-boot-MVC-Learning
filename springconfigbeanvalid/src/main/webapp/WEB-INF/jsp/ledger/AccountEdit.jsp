@@ -12,14 +12,15 @@
 <body>
 	${message } <br />
 	
-	<form:form method="post" modelAttribute="account">
+	<form:form method="post"  modelAttribute="account">
 		<form:hidden path="accountId"/>
-		<form:errors/>
+		<form:errors />
 		
 		<fieldset class="form-group">
 			<form:label path="accountId">Account ID</form:label>
 			<form:input path="accountId" type="text" disabled="true"/>
 			<form:errors path="accountId"/>
+			
 		</fieldset>
 		
 		<fieldset class="form-group">

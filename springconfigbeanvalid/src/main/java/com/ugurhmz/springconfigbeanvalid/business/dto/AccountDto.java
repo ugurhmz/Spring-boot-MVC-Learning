@@ -2,8 +2,6 @@ package com.ugurhmz.springconfigbeanvalid.business.dto;
 
 
 
-
-
 public class AccountDto {
 
 	private  long accountId;
@@ -11,16 +9,7 @@ public class AccountDto {
 	private double totalBalance;
 	
 	
-	
-	
-	public AccountDto() {
-	}
 
-	public AccountDto(long accountId, String accountName, double totalBalance) {
-		this.accountId = accountId;
-		this.accountName = accountName;
-		this.totalBalance = totalBalance;
-	}
 	
 	public long getAccountId() {
 		return accountId;

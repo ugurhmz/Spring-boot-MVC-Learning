@@ -1,10 +1,13 @@
 package com.ugurhmz.springconfigbeanvalid.data.entity;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 
 
@@ -15,20 +18,16 @@ public class Account {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long accountId;
-	@Column(name="account_name")
+	
+	@NotEmpty(message="{account.accountName.notEmpty}")
 	private String accountName;
-	@Column(name="total_balance")
+	
+	@Min(value=2,message="{account.totalBalance.min}")
+	@Max(value=2000,message="{account.totalBalance.max}")
 	private double totalBalance;
 	
 	
-	public Account() {
-	}
 	
-	public Account(long accountId, String accountName, double totalBalance) {
-		this.accountId = accountId;
-		this.accountName = accountName;
-		this.totalBalance = totalBalance;
-	}
 	public long getAccountId() {
 		return accountId;
 	}
