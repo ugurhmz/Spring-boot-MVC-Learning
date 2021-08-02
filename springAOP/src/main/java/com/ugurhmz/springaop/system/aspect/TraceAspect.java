@@ -14,9 +14,23 @@ public class TraceAspect {
 	
 	
 	@Before("execution(* com.ugurhmz.springaop.module.sales.*.*(..))")
-	public void coming(JoinPoint joinPoint) {
+	public void comingAll(JoinPoint joinPoint) {
 		
-		System.out.println("Before çalıştı : ");
+		System.out.println("comingAll");
 	}
+	
+	
+	@Before("execution(* com.ugurhmz.springaop.module.sales.Sales*.*Something(String))")
+	public void comingSomething(JoinPoint joinPoint) {
+		System.out.println("comingSomething...");
+	}
+	
+	
+	@Before("execution(* com.ugurhmz.springaop.module.sales.*.handle*(..))")
+	public void comingHandle(JoinPoint joinPoint) {
+		System.out.println("comingHandle...");
+	}
+	
+	
 	
 }

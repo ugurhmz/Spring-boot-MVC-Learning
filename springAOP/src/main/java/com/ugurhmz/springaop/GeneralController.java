@@ -16,13 +16,37 @@ public class GeneralController {
 	private SalesService salesService;
 	
 	
-	@GetMapping("/aop/sales/{input}")
+	@GetMapping("/aop/something/{input}")
 	@ResponseBody
-	public String getSale(@PathVariable("input") String input) {
+	public String getSomething(@PathVariable("input") String input) {
 		
 		String outPut = salesService.performSomething(input);
-		
 		return outPut;
 	}
 	
+	
+	@GetMapping("/aop/another/{input}")
+	@ResponseBody
+	public String  getAnother(@PathVariable("input") String input) {
+		
+		String outPut = salesService.performAnother(input);
+		return outPut;
+	}
+	
+	
+	@GetMapping("/aop/handle/{input}")
+	@ResponseBody
+	public String  getHandle(@PathVariable("input") String input) {
+		
+		String outPut = salesService.handleSomething(input);
+		return outPut;
+	}
+	
+	
 }
+
+
+
+
+
+

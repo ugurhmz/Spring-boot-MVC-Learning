@@ -11,7 +11,18 @@ public class SalesServiceImpl implements SalesService {
 	@Override
 	public String performSomething(String input) {
 	
-		return "Sales : "+input;
+		return "performSomething : "+input;
+	}
+
+	@Override
+	public String performAnother(String input) {
+		return "performAnother : "+input;
+	}
+	
+
+	@Override
+	public String handleSomething(String input) {
+		return "handleSomething : "+input;
 	}
 
 }
