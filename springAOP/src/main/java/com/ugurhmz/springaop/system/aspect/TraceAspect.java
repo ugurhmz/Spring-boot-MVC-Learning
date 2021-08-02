@@ -17,6 +17,16 @@ public class TraceAspect {
 	public void comingAll(JoinPoint joinPoint) {
 		
 		System.out.println("comingAll");
+		System.out.println("JoinPoint long str: "+joinPoint.toLongString());
+		System.out.println("JoinPoint kısa str: "+joinPoint.toShortString());
+		
+		System.out.println(joinPoint.getTarget().getClass().getSimpleName()+" ");
+		System.out.println(joinPoint.getSignature().getName()+" ");
+		
+		for(Object arg : joinPoint.getArgs()) {
+			System.out.println(arg + ":"+arg.getClass().getSimpleName());
+		}
+		
 	}
 	
 	
