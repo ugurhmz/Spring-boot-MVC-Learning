@@ -10,8 +10,12 @@ public class SalesServiceImpl implements SalesService {
 
 	@Override
 	public String performSomething(String input) {
-	
-		return "performSomething : "+input;
+		if(input.equals("Wrong")) {
+			throw new IllegalArgumentException("This input wrong!");
+		}
+		
+		return "performSomething" +input;
+		
 	}
 
 	@Override
