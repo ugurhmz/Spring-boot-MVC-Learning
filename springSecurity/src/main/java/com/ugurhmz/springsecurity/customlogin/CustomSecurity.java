@@ -1,4 +1,4 @@
-package com.ugurhmz.springsecurity.matcher;
+package com.ugurhmz.springsecurity.customlogin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,23 +7,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
+@EnableWebSecurity
+public class CustomSecurity extends WebSecurityConfigurerAdapter {
 
-
-//@EnableWebSecurity
-public class SecurityMatcher  extends WebSecurityConfigurerAdapter{
-
+	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http 
 			.authorizeRequests()
-			.antMatchers("/","/home")
-			.permitAll()
+			.antMatchers("/","/home").permitAll()
+			.antMatchers("/login").permitAll()
 			.anyRequest()
 			.authenticated()
 			.and()		
 		.formLogin()
+			.loginPage("/login")	//	/login başarılı olursa alttaki /welcome git
+			.defaultSuccessUrl("/welcome")
 			.and()
 		.httpBasic();
 	}
@@ -34,26 +35,9 @@ public class SecurityMatcher  extends WebSecurityConfigurerAdapter{
 		
 		auth
 			.inMemoryAuthentication()
-			.withUser("ugur")
-			.password("12345")
+			.withUser("hello")
+			.password("{noop}1994ugur")
 			.roles("USER");
 	}
 	
-	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
