@@ -46,4 +46,19 @@ public class AuthorizationController {
 	}
 	
 	
+	@GetMapping("/partial")
+	public String getPartial() {
+		
+		
+		return "partial/PartialPage";
+	}
+	
+	
 }
+
+
+
+
+
+
+
