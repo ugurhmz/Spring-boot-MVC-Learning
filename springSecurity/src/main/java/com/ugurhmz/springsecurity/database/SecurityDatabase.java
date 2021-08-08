@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
-@EnableWebSecurity
+//@EnableWebSecurity
 public class SecurityDatabase extends WebSecurityConfigurerAdapter {
 
 	
