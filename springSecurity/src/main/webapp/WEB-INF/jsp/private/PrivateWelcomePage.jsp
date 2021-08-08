@@ -13,10 +13,16 @@
 <body>
 
 
-	<h2>Private Welcome Page</h2>
-
-	<a href="/logout" class="btn btn-danger mr-3">Çıkış Yap</a> 
-	<a href="/" class="btn btn-primary">Home</a>
+	<div class="container text-center">
+		<h2>Private Welcome Page</h2>
+		<div class="card-body bg-secondary my-3 text-white">
+			<h3 >User Name : ${userName}</h3>
+		</div>
+	
+		<a href="/logout" class="btn btn-danger mr-1">Logout</a> 
+		<a href="/" class="btn btn-primary">Home</a>
+	</div>
+	
 
 
 

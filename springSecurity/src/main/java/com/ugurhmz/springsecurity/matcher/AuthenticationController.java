@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AuthenticationController {
 
 	
-	
+	// LOGIN
 	@GetMapping("/login")
 	public String getLogin(@RequestParam(name="error", required=false) String error, Model model) {
 		
@@ -30,6 +30,8 @@ public class AuthenticationController {
 	}
 	
 	
+	
+	// LOGOUT
 	@GetMapping("/logout")
 	//@ResponseBody
 	public String getLogout(HttpServletRequest request,HttpServletResponse response ) {
@@ -38,11 +40,25 @@ public class AuthenticationController {
 		if(authentication != null) {
 			new SecurityContextLogoutHandler().logout(request, response, authentication);
 		}
-	
 		
-		//return  authentication;
-		
+		//return  authentication;	
 		return "custom/LogoutPage";
+	}
+	
+	
+	
+	// CURRENT USER
+	@GetMapping("/current")
+	@ResponseBody
+	public String getCurrentUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(authentication != null) {
+			return authentication.getName();
+		}
+		
+		
+		return "Not logged in  <a href='/login'>Login</a>";
 	}
 	
 	
