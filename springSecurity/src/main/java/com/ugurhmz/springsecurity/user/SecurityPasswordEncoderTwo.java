@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 
-@EnableWebSecurity 
+//@EnableWebSecurity 
 public class SecurityPasswordEncoderTwo extends WebSecurityConfigurerAdapter {
 
 
