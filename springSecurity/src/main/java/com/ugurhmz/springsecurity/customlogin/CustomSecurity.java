@@ -26,7 +26,10 @@ public class CustomSecurity extends WebSecurityConfigurerAdapter {
 			.loginPage("/login")	//	/login başarılı olursa alttaki /welcome git
 			.defaultSuccessUrl("/welcome")
 			.and()
-		.httpBasic();
+		.logout()
+			.logoutSuccessUrl("/logout")
+			.invalidateHttpSession(true)
+			.permitAll();
 	}
 	
 	

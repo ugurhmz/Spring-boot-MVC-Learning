@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 <title>Insert title here</title>
@@ -13,10 +14,18 @@
 <body>
 
 
-	<h2>Private Welcome Page</h2>
+	
 
-	<a href="/logout" class="btn btn-danger mr-3">Çıkış Yap</a> 
-	<a href="/" class="btn btn-primary">Home</a>
+	<div class="container my-3">
+
+		<h1>Logout Page | Logout successful</h1>
+		<a href="/home" class="btn btn-primary">Home </a> 
+		<a href="/login" class="btn btn-success">Login </a> <br/>
+		
+	</div>
+	
+	
+
 
 
 
