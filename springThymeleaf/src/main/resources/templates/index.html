@@ -2,12 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet"  type="text/css" th:href="@{/css/style.css}" />
 <title>Insert title here</title>
 </head>
 <body>
 
 	<h1 th:text="'Hello world'"></h1>
 	
-	<h2>Message : <label th:text="${mymessage}"></label></h2>
+	<h2 class="mystyle">Message : <label th:text="${mymessage}"></label></h2>
 </body>
 </html>
