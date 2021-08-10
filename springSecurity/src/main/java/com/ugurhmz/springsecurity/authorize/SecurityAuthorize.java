@@ -10,12 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 
 
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(
-		securedEnabled = true,
-		prePostEnabled =  true,
-		jsr250Enabled = true
-)
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(
+	//	securedEnabled = true,
+	//	prePostEnabled =  true,
+	//	jsr250Enabled = true
+//)
 public class SecurityAuthorize  extends WebSecurityConfigurerAdapter{
 
 	
