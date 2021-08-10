@@ -1,12 +1,12 @@
-# Spring-boot-MVC-Learning
+# Önder Teker - Derinlemesine Enterprise Java 4 : IoC, CDI & Spring Boot  Tuttuğum Notlar :
 Spring, Spring Boot Web, MVC, Data, ORM, REST, Configuration, AOP, Security, Thymeleaf,Spring CRUD
 
-1) Spring MVC’de Controller ile çalışır. @Controller anatasyonu sınıfın üstüne konur. Web’den erişilebilir demektir.
+-  1 ) Spring MVC’de Controller ile çalışır. @Controller anatasyonu sınıfın üstüne konur. Web’den erişilebilir demektir.
 
-2)@GetMapping(“/test”)  -> Route verir.
+-  2)@GetMapping(“/test”)  -> Route verir.
  @ResponseBody -> içeriğin kendisini üretir. alttaki metodu. Eğerki bu anatasyon yoksa. Views olarak algılar, sayfayı açar.
 
-3) JSTL  VE JSP için pom.xml içine : 
+- 3 ) JSTL  VE JSP için pom.xml içine : 
 <dependency>
 	            <groupId>org.apache.tomcat.embed</groupId>
 	            <artifactId>tomcat-embed-jasper</artifactId>
@@ -15,18 +15,18 @@ Spring, Spring Boot Web, MVC, Data, ORM, REST, Configuration, AOP, Security, Thy
 	        <groupId>javax.servlet</groupId>
 	        <artifactId>jstl</artifactId>
 	    </dependency>
-4) src->main->webapp folder oluştur ve altına ->
+- 4 ) src->main->webapp folder oluştur ve altına ->
 
-5- MVC’de her zaman önce, Controller çalışcak.
-6- Kullanıcıya gösterilmek istenmeyen şeyler için özellike .jsp files’lar ->  BUNU SAAĞLAMAK İÇİN WEB-INF Folderi oluşturulur.
+- 5 ) MVC’de her zaman önce, Controller çalışcak.
+- 6 ) Kullanıcıya gösterilmek istenmeyen şeyler için özellike .jsp files’lar ->  BUNU SAAĞLAMAK İÇİN WEB-INF Folderi oluşturulur.
 src->main->webapp->WEB-INF folderi oluştur -> jsp folder oluştur. Sonra .jsp Sayfaları oraya koy.
 
-7- Doğrudan WEB-INF ulaşmak için, src/main/resources -> application.properties içine : 
+- 7 ) Doğrudan WEB-INF ulaşmak için, src/main/resources -> application.properties içine : 
 spring.mvc.view.prefix=/WEB-INF/jsp/
 spring.mvc.view.suffix=.jsp
 
 
-8- JSTL
+-  8 ) JSTL
 model.addAttribute("ismi","değeri")   -> .html içinde çağrılma şekli ise : ${message}  şeklinde çağırabiliriz
 *Önce @Controller bulunuyor. Sonra veri sayfada gösterilcek hale getiriliyor.
 
