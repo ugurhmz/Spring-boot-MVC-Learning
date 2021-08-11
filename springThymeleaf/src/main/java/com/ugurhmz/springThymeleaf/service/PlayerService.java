@@ -1,6 +1,9 @@
 package com.ugurhmz.springThymeleaf.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +40,35 @@ public class PlayerService {
 		return playerRepo.save(player);
 		
 	}
+
+	
+	// Get user Id
+	public Player getUser(Integer playerId) throws UserNotFoundException {
+	
+		try {
+			return playerRepo.findById(playerId).get();
+			
+		} catch(NoSuchElementException ex) {
+			throw new UserNotFoundException("Could not find any user with ID : "+playerId);
+		}
+	}
+	
+		
+		
+		
+	// Delete User
+	public void  delete(Integer playerId) throws UserNotFoundException {
+		Long countById = playerRepo.countByplayerId(playerId);
+		
+		if(countById == null || countById == 0) {
+			throw new UserNotFoundException("Could not find any user with ID : "+playerId);
+		}
+		
+		playerRepo.deleteById(playerId);
+	}
+	
+		
+
 	
 	
 	

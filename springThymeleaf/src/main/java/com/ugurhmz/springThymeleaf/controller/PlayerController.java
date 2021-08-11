@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ugurhmz.springThymeleaf.entity.Player;
 import com.ugurhmz.springThymeleaf.service.PlayerService;
+import com.ugurhmz.springThymeleaf.service.UserNotFoundException;
 
 
 
@@ -46,13 +47,68 @@ public class PlayerController {
 	
 	//POST NEW PLAYER
 	@PostMapping("/players/new")
-	public String postNewPlayer(Player player) {
+	public String postNewPlayer(Player player , RedirectAttributes redirectAttributes) {
 		
 		playerService.save(player);
+		redirectAttributes.addFlashAttribute("message","Player has been saved successfully...");
+		return "redirect:/players";
+	}
+	
+	
+	
+	
+	
+	// UPDATE FORM 
+	@GetMapping("/players/edit/{id}")
+	public String getUpdateForm(@PathVariable(name="id") Integer playerId,
+			Model model, RedirectAttributes redirectAttributes) 
+	{
+		
+		try {
+			Player player = playerService.getUser(playerId);
+			model.addAttribute("player",player);
+			
+			return "addNewUser";
+			
+		} catch(UserNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			return "redirect:/players";
+		}
+		
+		
+	}
+		
+	
+	// DELETE 
+	@GetMapping("/players/delete/{id}")
+	public String deletePlayer(@PathVariable(name="id") Integer playerId,
+			Model model, RedirectAttributes redirectAttributes) 
+	{
+		try {
+			playerService.delete(playerId);
+			redirectAttributes.addFlashAttribute("message","The Player ID : "+playerId+" has been deleted successfully");
+		} catch(UserNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message",ex.getMessage());
+		}
+		
 		
 		return "redirect:/players";
 	}
 	
 	
 	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
