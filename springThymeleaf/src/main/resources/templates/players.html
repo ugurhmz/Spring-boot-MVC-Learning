@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet"  type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+
+	
+			
+	
+	<div class="container-fluid">
+		 <div class="my-1">
+		
+		 
+		 	<h1 class="text-center nav-item">
+		 		 <a th:href="@{/players}" class="nav-link text-dark d-inline-block">Players Manager	</a>
+		 	</h1>
+		 
+		 	<a class="text-success " th:href="@{/players/new}">
+		 		Create New Player
+		 	</a>
+		 	
+		 	
+		 	<div class="mt-2">
+		 		<table class="table table-bordered table-striped table-hover text-center">
+		 		
+		 			<thead class="thead-dark">
+		 				<tr>
+		 					<th scope="col">ID</th> 				
+		 					<th scope="col">Player Name</th>
+		 					<th scope="col">Player Value</th>
+		 					<th scope="col">Operations</th>
+		 				</tr>
+		 			</thead>
+		 			
+		 			
+		 			<tbody>
+		 				<tr th:each="player : ${players}">
+		 					 	<th scope="row">[[${player.playerId}]]</th>
+		 						<td>[[${player.playerName}]]</td>
+		 						<td>[[${player.playerValue}]]</td>
+		 						<td class="col-md-2">
+		 							<a class="btn btn-outline-success" th:href="@{'/players/edit/'} + ${player.playerId}" 
+		 							title="Edit this player">
+		 								Edit
+		 							</a>
+		 							
+		 							<a class="btn btn-outline-danger" th:href="@{'/players/delete/' + ${player.playerId}}"
+		 								title="Delete This player"
+		 								th:playerId="${player.playerId}"
+		 							>
+		 								Delete
+		 							</a>
+		 						</td>
+		 				</tr>
+		 			</tbody>
+		 			
+		 		</table>	
+		 	</div>
+		 	
+		 	
+		 </div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</body>
+</html>
