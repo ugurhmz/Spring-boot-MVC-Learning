@@ -502,7 +502,51 @@ _____________________________________ THYMELEAF ________________________________
 
 4- @{}  -> @ ifadesi burda, static kaynakların bulunduğu konumun köküne göre yap demektir.
 
+5- modele referans verme ->th:object="${modelismi}  -> Springden geldiği için $ kullanıyoruz
 
+6- ${} -> şeklinde $ olan bütün model'de arıyor.
+  *{} -> içinde bulunduğum nesnede ara demek.
+ 
+   th:field ->içinde bulunduğumuz objenin, fieldi yani th:object'in
+	
+
+<h5 th:text="${message}"></h5>  şeklinde kullanabilirsin veya
+<h5>[[${message}]]</h5> şeklindede kullanabilirsin.
+
+
+7- message.properties -> resources altında templates altında olur.
+message.properties içine :
+Player.playerName=Enter the Player Name
+Player.playerValue=Enter the Player Value
+
+
+
+8- i18n
+@Configuration
+public class MessageConfiguration {
+
+	
+	private Locale LOCALE_UZ = new Locale("uz","UZ"); // messages_uz & burdaki _uz aynı olması lazım
+	
+	
+	
+	@Bean
+	public LocaleResolver localeRespover() {
+		SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+		sessionLocaleResolver.setDefaultLocale(LOCALE_UZ);
+		return sessionLocaleResolver;
+	}
+	
+	
+	
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:messages");
+		messageSource.setDefaultLocale(LOCALE_UZ);
+		messageSource.setDefaultEncoding("UTF-8");
+		
+		return messageSour
 
 
 
